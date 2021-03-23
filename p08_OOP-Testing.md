@@ -107,38 +107,79 @@ const horaActual = new Clock(11, 59);
 console.log(horaActual.toString());   // 11:59h
 ```
 
-### 7.- La clase *Conjunto*
+### 7.- La clase *MySet*
 Con frecuencia resulta necesario definir una estructura de datos de algún tipo, como un conjunto. 
-En este ejercicio se propone desarrollar un módulo ES6 que implemente una clase `Conjunto` 
-para representar conjuntos de números naturales.
+En este ejercicio se propone desarrollar un módulo ES6 que implemente una clase `MySet` 
+para representar 
+[conjuntos](https://en.wikipedia.org/wiki/Set_(mathematics)) 
+de números naturales.
 
 La clase no ha de usar en modo alguno objetos 
 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 de JavaScript y se desarrollará usando la sintaxis para clases de JavaScript y poniendo en práctica los principios de
 abstracción y encapsulamiento característicos de la Programación Orientada a Objetos.
 
-La clase ha de contener al menos métodos que permitan las siguientes operaciones con conjuntos:
-* `` Imprimir un 
-* `empty` Determina sin un conjunto es vacío
+La clase ha de contener al menos métodos (y/o atributos) que implementen las siguientes operaciones con conjuntos:
+* `toString` Devuelve una cadena que representa el conjunto. Los conjuntos se imprimirán en pantalla con sus
+  elementos incluídos entre llaves, de modo que el conjunto vacío se representa por `{}`.
+* `size` Devuelve el cardinal del conjunto
+* `union` Unión de conjuntos
+* `intersection` Intersección de conjuntos
+* `difference` Complemento relativo
 * `contains` Determina si un elemento pertenece al conjunto
+* `empty` Determina sin un conjunto es vacío
 * `subset` Determina si un conjunto es subconjunto de otro 
-* `disjount` Indica si dos conjuntos son disjuntos
+* `disjorint` Indica si dos conjuntos son disjuntos
 * `eql` Indica si dos conjuntos son iguales 
 * `add` Añade un elemento a un conjunto
-* `` 
 
+Para la definición de estas operaciones consulte 
+[Wikipedia](https://en.wikipedia.org/wiki/Set_(mathematics)) 
+así como los métodos y ejemplos de la clase
+[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) 
+de JavaScript.
 
 Incluya discrecionalmente cualesquiera otras operaciones que considere adecuadas como métodos en la clase `Complejo`.
 
 Previo a la implementación de la clase, diseñe y desarrolle un conjunto de tests para probar el correcto
 funcionamiento de todos los métodos de la clase.
 
+Desarrolle un programa cliente `sets.js` que permita operar con conjuntos y haga uso de la clase `MySet` que diseñe.
+El programa cliente realizará operaciones similares a las que figuran en la página MDN correspondiente a la
+clase
+[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) 
+de JavaScript, por ejemplo:
+```javascript
+const mySet1 = new MySet()
 
+mySet1.add(1)           // Set [ 1 ]
+mySet1.add(5)           // Set [ 1, 5 ]
+mySet1.add(5)           // Set [ 1, 5 ]
+mySet1.has(Math.sqrt(25))  // true
 
+const mySet2 = new MySet([1, 2, 3, 4])
+mySet2.size                    // 4
+```
 
+Para representar internamente los conjuntos se pueden utilizar diversas ideas y se propone aquí una que podría
+usarse, si lo estiman conveniente, y que se expone a continuación:
 
-Desarrolle un programa cliente `complejos.js` que permita operar con números complejos y haga uso de la clase `Complejo` que diseñe.
-El programa cliente definirá un par de números complejos `-1-5i` y `1+i` y realice todas las operaciones
-anteriores utilizando ambos números como operandos.
+Para representar un conjunto de números (enteros positivos) se utilizarán los bits de un número. 
+Si el bit i-ésimo está a 1 ello indicará que el número *i* pertenece al conjunto. 
+Si ese bit está a 0, ello indica que el número *i* no pertenece al conjunto. 
+De este modo se puede representar conjuntos con tantos números naturales como bits tiene la representación
+binaria del número.
 
+[JavaScript representa todos los
+números](https://stackoverflow.com/questions/2802957/number-of-bits-in-javascript-numbers#:~:text=All%20numbers%20in%20JavaScript%20are,%2D%2D%20will%20be%20represented%20accurately.)
+en formato de punto flotante IEEE-754, pero las operaciones de bits
+las calcula sobre 32 bits (4 bytes) de modo que con un número se pueden representar conjuntos desde 0 hasta 32
+elementos.
+
+Una primera aproximación sería usar este esquema limitando los conjuntos a un máximo de 32 elementos.
+Si se requieren conjuntos con un mayor número de elementos sería necesario usar un vector de números.
+Con un vector de `M` valores numéricos se pueden representar conjuntos con un máximo de `32 * M` elementos. 
+Usando este esquema de representación resulta fácil implementar las diferentes operaciones sobre conjuntos
+usando 
+[aritmética de bits](https://medium.com/@soni.dumitru/javascript-bitwise-operations-190001bf1fc).
 
