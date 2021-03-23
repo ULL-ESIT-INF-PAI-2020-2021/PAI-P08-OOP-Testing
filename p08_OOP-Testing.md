@@ -24,20 +24,31 @@ que se tendrán en cuenta a la hora de evaluar esta práctica:
   Studio Code.
 
 ### Indicaciones de caracter general
-A la hora de resolver los problemas que se le proponen, trate de usar exclusivamente las características de
-JavaScript que ha estudiado en clase o bien en el material que se le ha pedido que estudie.
+Configure un fichero `package.json` diferente para cada uno de sus "proyectos" (ejercicios)
+de modo que ejecutando `npm install` queden instaladas todas las dependencias del proyecto.
 
-Descarte soluciones avanzadas y nunca utilice código que no sea Ud. capaz de comprender y explicar a otra
-persona.
+Algunos de los programas correspondientes a los ejercicios 1-5 de esta práctica ya han sido realizados en
+sesiones de prácticas anteriores, de modo que los tests unitarios que se propone desarrollar serían 
+desarrollados *a posteriori*. 
+Esta no es la práctica habitual al seguir la metodología TDD sino que los tests (al igual que la
+documentación) han de comenzar a desarrollarse **antes** de desarrollar el código.
+Ello no es óbice para que tanto los tests como la documentación se revisen convenientemente conforme se
+refactoriza el código.
+Si no hubiera realizado Ud. anteriormente cualquiera de esos ejercicios, desarrolle sus correspondientes
+tests usando Mocha y Chai antes de proceder a desarrollar los programas.
 
-Puesto que en la práctica anterior ya se ha trabajado con módulos CommonJS se propone aquí que
-la aplicación que desarrolle se organice utilizando
-[módulos ES6](https://blog.logrocket.com/es-modules-in-node-today/)
+En cualquier caso diseñe e implemente sus propios tests en Mocha y Chai y verifique que sus programas pasan
+estos tests **antes** de revisar los tests (usando Jest) que Exercism proporciona.
 
-Configure un fichero `package.json` en el directorio raíz de su repositorio de modo que ejecutando 
-`npm install` queden instaladas todas las dependencias de su proyecto.
+Independientemente de cómo se implemente una función, el desarrollador conoce de antemano los resultados que
+esa función debe entregar como correctos.
+Recuerde asimismo que los tests de código son en sí mismo programas y como tales han de estar correctamente
+documentados.
+El *hook* *describe* es posiblemente la mejor herramienta para la documentación de sus tests, pero no ha de
+ser la única.
+Incluya comentarios de cabecera también en los ficheros `*.spec.js` de pruebas de código.
 
-### Tests uniarios para *Armstrong Numbers*
+### 1.- Tests uniarios para *Armstrong Numbers*
 Cree un nuevo proyecto tomando como punto de partida el programa `armstrong-numbers.js` que resuelve el problema
 [*Armstrong Numbers*](https://exercism.io/my/solutions/5e1f0bde06fb41e78acbfb2312181821)
 del *track* de JavaScript de 
@@ -50,23 +61,51 @@ Compruebe que el programa pasa todos los tests que desarrolle.
 Compare finalmente los tests que Ud. ha desarrollado con los que la plataforma Exercism propone para ese mismo
 problema.
 
-### Tests uniarios para *Nth Prime*
+### 2.- Tests uniarios para *Nth Prime*
 Repita el ejercicio anterior, pero en este caso para el programa `nth-prime.js` correspondiente al problema
 [*Nth Prime*](https://exercism.io/my/solutions/07630f17544c4c4ca7cc30fa69c51e7e)
 de Exercism.
 
-### Tests uniarios para *Yacht*
-Repita el ejercicio anterior, pero en este caso para el programa `yacht.js` correspondiente al problema
+### 1.- Tests uniarios para *Yacht*
+Repita el ejercicio 1 para el programa `yacht.js` correspondiente al problema
 [*Yacht*](https://exercism.io/my/solutions/5f2e1e4332fd419abf2ea365b05b4e3b)
 de Exercism.
 
-### Tests uniarios para *Darts*
-Repita el ejercicio anterior, pero en este caso para el programa `darts.js` correspondiente al problema
+### 4.- Tests uniarios para *Darts*
+Repita el ejercicio 1 para el programa `darts.js` correspondiente al problema
 [*Darts*](https://exercism.io/my/solutions/de65d30c065c435b82911b0c7ca10b0c)
 de Exercism.
 
-### Tests uniarios para *Roman Numerals*
-Repita el ejercicio anterior, pero en este caso para el programa `roman-numerals.js` correspondiente al problema
+### 5.- Tests uniarios para *Roman Numerals*
+Repita el ejercicio 1 para el programa `roman-numerals.js` correspondiente al problema
 [*Roman Numerals*](https://exercism.io/my/solutions/5bd5622efab448d9b12233e779696a41)
 de Exercism.
+
+### 6.- La clase *Clock*
+En este ejercicio se propone desarrollar un módulo ES6 que implemente una clase `Clock` 
+para representar un reloj digital con horas y minutos. No es necesario contemplar segundos.
+
+La clase no ha de usar en modo alguno objetos 
+[Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+de JavaScript y se desarrollará usando la sintaxis para clases de JavaScript y poniendo en práctica los principios de
+abstracción y encapsulamiento característicos de la Programación Orientada a Objetos.
+
+La clase ha de contener un método *toString()* que permita imprimir en pantalla un objeto *Clock* en el
+formato `hh:mm`.
+La clase ha de contemplar métodos que permitan sumar y restar minutos a un objeto *Clock*.
+Análogamente, dos objetos que representen la misma hora deben ser iguales entre sí.
+Incluya discrecionalmente cualesquiera otras operaciones que considere adecuadas como métodos en la clase `Complejo`.
+
+Previo a la implementación de la clase, diseñe y desarrolle un conjunto de tests para probar el correcto
+funcionamiento de todos los métodos de la clase.
+
+Encapsule la clase en un módulo que exporte la misma hacia otros programas clientes que pudieran utilizarla.
+
+Desarrolle un programa *cliente* que utilice la clase *Clock* e instancie objetos de esa clase:
+```javascript
+const horaActual = new Clock(11, 59);
+console.log(horaActual.toString());   // 11:59h
+```
+
+### 7.- La clase 
 
