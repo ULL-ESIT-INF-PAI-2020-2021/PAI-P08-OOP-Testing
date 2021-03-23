@@ -107,5 +107,38 @@ const horaActual = new Clock(11, 59);
 console.log(horaActual.toString());   // 11:59h
 ```
 
-### 7.- La clase 
+### 7.- La clase *Conjunto*
+Con frecuencia resulta necesario definir una estructura de datos de algún tipo, como un conjunto. 
+En este ejercicio se propone desarrollar un módulo ES6 que implemente una clase `Conjunto` 
+para representar conjuntos de números naturales.
+
+La clase no ha de usar en modo alguno objetos 
+[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+de JavaScript y se desarrollará usando la sintaxis para clases de JavaScript y poniendo en práctica los principios de
+abstracción y encapsulamiento característicos de la Programación Orientada a Objetos.
+
+La clase ha de contener al menos métodos que permitan las siguientes operaciones con conjuntos:
+* `` Imprimir un 
+* `empty` Determina sin un conjunto es vacío
+* `contains` Determina si un elemento pertenece al conjunto
+* `subset` Determina si un conjunto es subconjunto de otro 
+* `disjount` Indica si dos conjuntos son disjuntos
+* `eql` Indica si dos conjuntos son iguales 
+* `add` Añade un elemento a un conjunto
+* `` 
+
+
+Incluya discrecionalmente cualesquiera otras operaciones que considere adecuadas como métodos en la clase `Complejo`.
+
+Previo a la implementación de la clase, diseñe y desarrolle un conjunto de tests para probar el correcto
+funcionamiento de todos los métodos de la clase.
+
+
+
+
+
+Desarrolle un programa cliente `complejos.js` que permita operar con números complejos y haga uso de la clase `Complejo` que diseñe.
+El programa cliente definirá un par de números complejos `-1-5i` y `1+i` y realice todas las operaciones
+anteriores utilizando ambos números como operandos.
+
 
