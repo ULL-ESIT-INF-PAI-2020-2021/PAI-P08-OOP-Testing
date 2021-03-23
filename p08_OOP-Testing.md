@@ -108,13 +108,15 @@ console.log(horaActual.toString());   // 11:59h
 ```
 
 ### 7.- La clase *MySet*
-Con frecuencia resulta necesario definir una estructura de datos de algún tipo, como un conjunto. 
 En este ejercicio se propone desarrollar un módulo ES6 que implemente una clase `MySet` 
 para representar 
 [conjuntos](https://en.wikipedia.org/wiki/Set_(mathematics)) 
 de números naturales.
 
-La clase no ha de usar en modo alguno objetos 
+Obviamente, si en alguna ocasión se precisa utilizar conjuntos, lo que ha de hacerse es utilizar la clase 
+[Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+de JavaScript.
+No obstante en este ejercicio práctico la implementación de la clase `MySet` no ha de usar en modo alguno objetos 
 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 de JavaScript y se desarrollará usando la sintaxis para clases de JavaScript y poniendo en práctica los principios de
 abstracción y encapsulamiento característicos de la Programación Orientada a Objetos.
@@ -139,7 +141,8 @@ así como los métodos y ejemplos de la clase
 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) 
 de JavaScript.
 
-Incluya discrecionalmente cualesquiera otras operaciones que considere adecuadas como métodos en la clase `Complejo`.
+Incluya discrecionalmente cualesquiera otras operaciones que considere adecuadas como métodos en la clase
+`MySet`.
 
 Previo a la implementación de la clase, diseñe y desarrolle un conjunto de tests para probar el correcto
 funcionamiento de todos los métodos de la clase.
@@ -152,14 +155,19 @@ de JavaScript, por ejemplo:
 ```javascript
 const mySet1 = new MySet()
 
-mySet1.add(1)           // Set [ 1 ]
-mySet1.add(5)           // Set [ 1, 5 ]
-mySet1.add(5)           // Set [ 1, 5 ]
+mySet1.add(1)           // Set {1}
+mySet1.add(5)           // Set {1, 5}
+mySet1.add(5)           // Set {1, 5}
 mySet1.has(Math.sqrt(25))  // true
 
 const mySet2 = new MySet([1, 2, 3, 4])
 mySet2.size                    // 4
 ```
+
+Observe que el constructor de la clase toma como parámetro un array en el que figuran los elementos con los
+que se inicializa el conjunto.
+
+Por simplicidad asumiremos que los números que intervienen en los conjutos son todos mayores o iguales que 1.
 
 Para representar internamente los conjuntos se pueden utilizar diversas ideas y se propone aquí una que podría
 usarse, si lo estiman conveniente, y que se expone a continuación:
@@ -173,8 +181,8 @@ binaria del número.
 [JavaScript representa todos los
 números](https://stackoverflow.com/questions/2802957/number-of-bits-in-javascript-numbers#:~:text=All%20numbers%20in%20JavaScript%20are,%2D%2D%20will%20be%20represented%20accurately.)
 en formato de punto flotante IEEE-754, pero las operaciones de bits
-las calcula sobre 32 bits (4 bytes) de modo que con un número se pueden representar conjuntos desde 0 hasta 32
-elementos.
+las calcula sobre 32 bits (4 bytes) de modo que con un número se pueden representar conjuntos de 32
+elementos (`{1, 2, 3, ..., 32}`).
 
 Una primera aproximación sería usar este esquema limitando los conjuntos a un máximo de 32 elementos.
 Si se requieren conjuntos con un mayor número de elementos sería necesario usar un vector de números.
@@ -182,4 +190,3 @@ Con un vector de `M` valores numéricos se pueden representar conjuntos con un m
 Usando este esquema de representación resulta fácil implementar las diferentes operaciones sobre conjuntos
 usando 
 [aritmética de bits](https://medium.com/@soni.dumitru/javascript-bitwise-operations-190001bf1fc).
-
